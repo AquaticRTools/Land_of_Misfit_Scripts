@@ -39,14 +39,19 @@ numericThreshold <- function(x, threshold){
 
 
 # Grab paired upstream/downstream real time gage data for the 2hrs
-last2Hours <- format(Sys.time()-7200,format="%Y-%m-%d %H:00:00") # small dataset for 
-currentTime <- format(Sys.time(),format="%Y-%m-%d %H:00:00") # small dataset for 
+last2Hours <- format(Sys.time()-7200,format="%Y-%m-%d %H:00:00") 
 
-upstreamData <- NWISpull('03171597', last2Hours, currentTime) %>% # pull last 2hrs of data
+upstreamData <- NWISpull('03171597', Sys.Date()-1,Sys.Date())%>%#format(Sys.time()-21600,format="%Y-%m-%d %H:%M:%S"), format(Sys.time(),format="%Y-%m-%d %H:%M:%S"))
+  dplyr::filter(dateTime >= last2Hours) %>% # filter to last 2 hrs for small test dataset
   dplyr::select(agency_cd,site_no,dateTime,Wtemp_Inst)%>%rename(upstream=!!names(.[4])) # change parameter to general name to make further manipulations easier
-downstreamData <- NWISpull('0317159760', last2Hours, currentTime) %>% # pull last 2hrs of data
+
+downstreamData <- NWISpull('0317159760',Sys.Date()-1,Sys.Date())%>%
+  dplyr::filter(dateTime >= last2Hours) %>% # filter to last 2 hrs for small test dataset
   dplyr::select(agency_cd,site_no,dateTime,Wtemp_Inst)%>%rename(downstream=!!names(.[4])) # change parameter to general name to make further manipulations easier
 
+
+# Try with real data first, use this for testing if no violations to play around with tq_mutate function
+# downstreamData$downstream[3:15] <- 18 
 
 # Class VI WQS
 maxT <- 20 
