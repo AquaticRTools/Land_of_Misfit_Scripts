@@ -1,4 +1,6 @@
 # How to make function that outputs ggplot with changeable parameter to plot
+library(ggplot2)
+library(dplyr)
 
 dataset <- read.csv('data/Briery2.csv')
 parameter <- 'DO'
