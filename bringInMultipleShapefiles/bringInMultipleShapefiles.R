@@ -1,20 +1,17 @@
-# This script helps combine Jack's point and polygon data into a single file bc ArcGIS can't merge them without errors
-library(tidyverse)
-library(raster)
-library(rgdal)
-library(rgeos)
-library(maptools)
+# This script helps read in multiple shapefiles efficiently into R and combine into a single object for further manipulation.
+# Created by Emma Jones (emma.jones@deq.virginia.gov)
+# Build in R v 3.4.1
 
-#library(maptools)
-#library(reshape)
-#library(reshape2)
-#library(plyr)
-#library(dplyr)
 
-# Normal Way 
+library(tidyverse) # version 1.1.1
+library(rgdal) # v 1.2-8
+library(maptools) # v 0.9-2
+
+# The normal way one brings in a shapefile
+# Note, on a Windows machine you need to use the full file location, on Mac/Linux you can use a relative path instead (relative to the project working directory)
 wshdSites <- readOGR('C:/Jack/1AXLR000.44/Layers','1AXLR000.44')
 
-# Test bringing into same list object
+# Bring in multiple shapefiles into same list object
 i=1
 n1 <- '1AXLK000.04'
 n2 <- '1AXLR000.44'
@@ -24,20 +21,20 @@ test[[2]] <-  readOGR(paste('C:/Jack/',n2,'/Layers',sep=''),n2)
 
 
 
-# Loop it
+# Build it into a loop
 dirFiles <- list.files(path = "C:/Jack")
-dirFilesShort <- dirFiles[33:35]
 test <- list()
 
-for(i in 33:35){#length(dirFiles)-1){
+for(i in 1:length(dirFiles)){
   test[[i]] <- readOGR(paste('C:/Jack/',dirFiles[i],'/Layers',sep=''),dirFiles[i])
 }
 
+# How to look at individual shapefile inside the list
 test[[35]]@data
 
-
+# Tricky way to combine multiple shapefiles into a single file, assuming they have the same projections and CRS
 test2 <- spRbind(test[[33]],test[[34]])
-
+# Alternate way if you run into problems with objectID overlap
 library(devtools)
 install_git("git://github.com/gsk3/taRifx.geo.git")
 library(taRifx.geo)
