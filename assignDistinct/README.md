@@ -1,1 +1,3 @@
-This README file describes the use of the assignDistinct function.
+The assignDistinct function assigns taxonomic distinctness to the taxa in a sample based on the occurrence of other taxa in the sample and taxonomic hierarchy information provided. The function accounts for special situations in which taxon names at a level not included in the hierarchy in the file are automatically considered distinct. 
+
+The example code reads in the example zooplankton and benthic macroinvertebrate files, runs the function on each dataset, and compares assigned values to the original file assignments. All files should be saved in the same directory for the example code to work correctly. 
