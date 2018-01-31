@@ -6,7 +6,7 @@ There are four examples in this script, each with more complexity (data formatti
 
 2: Timeline from a dataframe containing logger name, start and end times, with fields already named to match timevis() argument requirements
 
-3: Timmeline from a dataframe containing only start (field visit) times and different column (field) names than timevis arguments.  Have to determine end time.
+3: Timeline from a dataframe containing only start (field visit) times and different column (field) names than timevis arguments.  Have to determine end time.
 
 4: Same data as in # 3, but displaying the opposite, sites associated with each logger.
 
