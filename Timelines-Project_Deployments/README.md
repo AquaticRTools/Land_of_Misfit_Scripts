@@ -1,4 +1,4 @@
-The ultimate purpose of this code is to create visual timelines that display the time period continuous data loggers (or field meters) have been deployed at each site. This code walks through four examples to familiarize the user with the package timevis(). The code can be modified in a number of ways, including showing the reverse, the sites associated with each logger. It could also be easily modified for other project management applications.
+This code creates visual timelines that display the time period continuous data loggers (or field meters) have been deployed by site. It through four examples to familiarize the user with the package timevis(). The code can be modified in a number of ways, including showing the reverse, the sites associated with each logger. It could also be easily modified for other project management applications.
 
 There are four examples in this script, each with more complexity (data formatting) required.  All dataframes are provided in the code.
 
