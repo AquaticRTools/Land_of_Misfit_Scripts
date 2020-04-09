@@ -1,0 +1,1 @@
+﻿# Station creation tool in “Island of Misfit” Code is an R script Emma Jones wrote to create meta data for biological stations. It's very help in finding water quality standards, basin, and ecoregion of your station.
